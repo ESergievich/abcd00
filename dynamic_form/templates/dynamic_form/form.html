@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dynamic Form</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>Введите имена</h1>
+    <form method="post">
+        {% csrf_token %}
+        <div id="input-container">
+            {{ form.as_p }}
+        </div>
+        <button type="button" id="add-input">Добавить</button>
+        <button type="submit">Сохранить</button>
+    </form>
+
+    <div style="margin-top: 20px;">
+        <a href="{% url 'dynamic_form:show_data' %}">Показать данные</a>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            let counter = 1;
+
+            $('#add-input').click(function() {
+                const newInput = $(`
+                    <p>
+                        <label for="id_name${counter}">Имя ${counter}:</label>
+                        <input type="text" name="name${counter}" required id="id_name${counter}">
+                    </p>
+                `);
+                $('#input-container').append(newInput);
+                counter++;
+            });
+        });
+    </script>
+</body>
+</html>

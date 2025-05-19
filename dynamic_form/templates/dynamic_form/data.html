@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dynamic Forms</title>
+</head>
+<body>
+    <h1>Все данные:</h1>
+
+    {% for item in dynamic_forms %}
+        <div>
+            <strong>Форма №{{ item.id }}:</strong><br>
+                <ul>
+                    {% for key, value in item.dynamic_data.items %}
+                        <li>{{ key }}: {{ value }}</li>
+                    {% endfor %}
+                </ul>
+        </div>
+    {% endfor %}
+
+    <div style="margin-top: 20px;">
+        <a href="{% url 'dynamic_form:dynamic_form_view' %}">Добавить форму</a>
+    </div>
+</body>
+</html>
