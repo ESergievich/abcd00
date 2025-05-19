@@ -27,6 +27,7 @@ services:
     volumes:
       - ./config:/app/config
       - ./manage.py:/app/manage.py
+      - ./dynamic_form:/app/dynamic_form
     ports:
       - "8000:8000"
     depends_on:
